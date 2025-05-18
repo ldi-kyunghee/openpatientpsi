@@ -1,60 +1,66 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import LeaderboardPage from './LeaderboardPage';
 import './App.css';
 
-function App() {  
+function App() {
   const [message, setMessage] = useState('');
-  const [response, setResponse] = useState({ vllm: '', chatgpt: '' });
+  const [response, setResponse] = useState({ openpsi: '', gpt4o: '' });
   const [submittedMessage, setSubmittedMessage] = useState('');
   const [vote, setVote] = useState(null);
   const [showModelNames, setShowModelNames] = useState(false);
   const navigate = useNavigate();
-  const [modelOrder, setModelOrder] = useState(["vllm", "chatgpt"]);
+  const [modelOrder, setModelOrder] = useState(["openpsi", "gpt4o"]);
 
   const handleSubmit = async () => {
-  if (!message.trim()) return;
+    if (!message.trim()) return;
 
-  const shuffled = Math.random() < 0.5 ? ["vllm", "chatgpt"] : ["chatgpt", "vllm"];
-  setModelOrder(shuffled);
+    const shuffled = Math.random() < 0.5 ? ["openpsi", "gpt4o"] : ["gpt4o", "openpsi"];
+    setModelOrder(shuffled);
 
-  setSubmittedMessage(message);
-  setVote(null);
-  setShowModelNames(false);
-  setResponse({ vllm: '응답 대기 중...', chatgpt: '응답 대기 중...' });
+    setSubmittedMessage(message);
+    setVote(null);
+    setShowModelNames(false);
+    setResponse({ openpsi: '응답 대기 중...', gpt4o: '응답 대기 중...' });
 
-  try {
-    const res = await fetch('http://localhost:8001/compare', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, model_order: shuffled })  // model_order 전달
-    });
+    try {
+      const res = await fetch('http://localhost:8000/compare', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, model_order: shuffled })
+      });
 
-    const data = await res.json();
-    setResponse(data);
-  } catch (error) {
-    setResponse({
-      vllm: '[에러] 응답을 가져오지 못했습니다.',
-      chatgpt: '[에러] 응답을 가져오지 못했습니다.'
-    });
-  }
-};
+      const data = await res.json();
+      setResponse(data);
+    } catch (error) {
+      setResponse({
+        openpsi: '[에러] 응답을 가져오지 못했습니다.',
+        gpt4o: '[에러] 응답을 가져오지 못했습니다.'
+      });
+    }
+  };
 
   const handleVote = async (option) => {
-  setVote(option);
-  setShowModelNames(true);
-  alert(`투표 완료: ${option}`);
+    setVote(option);
+    setShowModelNames(true);
+    alert(`투표 완료: ${option}`);
 
-  try {
-    await fetch('http://localhost:8001/vote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model_order: modelOrder, vote: option })  // vote는 문자열 그대로!
-    });
-  } catch (error) {
-    console.error('투표 전송 실패', error);
-  }
-};
+    try {
+      await fetch('http://localhost:8000/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model_order: modelOrder, vote: option })
+      });
+    } catch (error) {
+      console.error('투표 전송 실패', error);
+    }
+  };
+
+  const displayName = (key) => {
+    if (key === "openpsi") return "OpenPSI 0.5B";
+    if (key === "gpt4o") return "GPT-4o";
+    return key;
+  };
 
   return (
     <div className="App">
@@ -62,17 +68,16 @@ function App() {
 
       <div className="battle-section">
         <div className="model-box">
-          <h2>{showModelNames ? (modelOrder[0] === "vllm" ? "beomi/KoAlpaca-Polyglot-13B" : "gpt-3.5-turbo") : "Model A"}</h2>
+          <h2>{showModelNames ? displayName(modelOrder[0]) : "Model A"}</h2>
           <div className="question-box">{submittedMessage}</div>
           <div className="answer-box">{response[modelOrder[0]]}</div>
         </div>
         <div className="model-box">
-          <h2>{showModelNames ? (modelOrder[1] === "vllm" ? "beomi/KoAlpaca-Polyglot-13B" : "gpt-3.5-turbo") : "Model B"}</h2>
+          <h2>{showModelNames ? displayName(modelOrder[1]) : "Model B"}</h2>
           <div className="question-box">{submittedMessage}</div>
           <div className="answer-box">{response[modelOrder[1]]}</div>
-    </div>
-</div>
-
+        </div>
+      </div>
 
       <div className="input-section">
         <textarea

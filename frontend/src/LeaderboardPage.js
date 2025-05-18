@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = useState({
-    vllm: 0,
-    chatgpt: 0,
-    Tie: 0,
-    'Both Bad': 0
-  });
+  const [sortedModels, setSortedModels] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8001/leaderboard")
+    fetch("http://localhost:8000/leaderboard")
       .then(res => res.json())
-      .then(data => setLeaderboard(data))
+      .then(data => {
+        const filtered = Object.entries(data)
+          .filter(([key]) => key !== "Tie" && key !== "Both Bad")
+          .sort((a, b) => b[1] - a[1]);
+        setSortedModels(filtered);
+      })
       .catch(err => console.error("리더보드 로딩 실패", err));
   }, []);
 
@@ -24,27 +24,23 @@ function LeaderboardPage() {
       <table>
         <thead>
           <tr>
-            <th>항목</th>
+            <th>순위</th>
+            <th>모델</th>
             <th>득표 수</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>beomi/KoAlpaca-Polyglot-13B</td>
-            <td>{leaderboard.vllm ?? 0}</td>
-          </tr>
-          <tr>
-            <td>gpt-3.5-turbo</td>
-            <td>{leaderboard.chatgpt ?? 0}</td>
-          </tr>
-          <tr>
-            <td>Tie</td>
-            <td>{leaderboard.Tie ?? 0}</td>
-          </tr>
-          <tr>
-            <td>Both Bad</td>
-            <td>{leaderboard["Both Bad"] ?? 0}</td>
-          </tr>
+          {sortedModels.map(([model, votes], index) => (
+            <tr key={model}>
+              <td>{index + 1}</td>
+              <td>
+                {model === "openpsi" ? "OpenPSI 0.5B" :
+                 model === "gpt4o" ? "GPT-4o" :
+                 model}
+              </td>
+              <td>{votes}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
