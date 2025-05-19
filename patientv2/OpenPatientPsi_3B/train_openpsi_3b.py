@@ -71,6 +71,7 @@ for epoch in EPOCHS:
             num_train_epochs=epoch,
             learning_rate=lr,
             fp16=True,
+            logging_dir=os.path.join(output_dir, "logs"),
             logging_steps=10,
             save_strategy="epoch",
             report_to="none"
