@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LeaderboardPage.css';
 
 function LeaderboardPage() {
   const [sortedModels, setSortedModels] = useState([]);
@@ -18,31 +19,29 @@ function LeaderboardPage() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>🏆 리더보드</h1>
-      <button onClick={() => navigate("/")}>← 돌아가기</button>
-      <table>
-        <thead>
-          <tr>
-            <th>순위</th>
-            <th>모델</th>
-            <th>득표 수</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedModels.map(([model, votes], index) => (
-            <tr key={model}>
-              <td>{index + 1}</td>
-              <td>
-                {model === "openpsi" ? "OpenPSI 0.5B" :
-                 model === "gpt4o" ? "GPT-4o" :
-                 model}
-              </td>
-              <td>{votes}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="leaderboard-container">
+      <h1 className="leaderboard-title">🏆 리더보드</h1>
+      <button className="back-button" onClick={() => navigate("/")}>
+        ← 돌아가기
+      </button>
+
+      <div className="leaderboard-list">
+        {sortedModels.map(([model, votes], index) => (
+          <div className="leaderboard-card" key={model}>
+            <div className="model-info">
+              <span className="rank">{index + 1}</span>
+              <span className="model-name">
+                {model === "openpsi"
+                  ? "OpenPSI 0.5B"
+                  : model === "gpt4o"
+                  ? "GPT-4.1 nano"
+                  : model}
+              </span>
+            </div>
+            <div className="vote-count">{votes}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
