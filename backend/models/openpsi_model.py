@@ -4,7 +4,7 @@ from peft import PeftModel, PeftConfig
 import torch
 
 class OpenPsiModel(BaseModel):
-    def __init__(self, model_path="openpsi_0.5b/checkpoint-248"):
+    def __init__(self, model_path="openpsi_0.5b/checkpoint-250"):
         peft_config = PeftConfig.from_pretrained(model_path, local_files_only=True)
         base_model = AutoModelForCausalLM.from_pretrained(
             peft_config.base_model_name_or_path, torch_dtype=torch.float16
