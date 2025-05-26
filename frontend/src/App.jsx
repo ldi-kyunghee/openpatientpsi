@@ -3,14 +3,28 @@ import { useState } from 'react';
 import LeaderboardPage from './LeaderboardPage';
 import './App.css';
 
+const patients = [
+  { id: 0, name: "환자 1 (불안 장애)" },
+  { id: 1, name: "환자 2 (우울 장애)" },
+  { id: 2, name: "환자 3 (사회불안)" },
+  { id: 3, name: "환자 4 (공황장애)" },
+  { id: 4, name: "환자 5 (PTSD)" },
+  { id: 5, name: "환자 6 (강박 장애)" },
+  { id: 6, name: "환자 7 (자존감 문제)" },
+  { id: 7, name: "환자 8 (분노 조절 문제)" },
+  { id: 8, name: "환자 9 (스트레스 과다)" },
+  { id: 9, name: "환자 10 (의존성 성격)" },
+];
+
 function App() {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState({ openpsi: '', gpt4o: '' });
   const [submittedMessage, setSubmittedMessage] = useState('');
   const [vote, setVote] = useState(null);
   const [showModelNames, setShowModelNames] = useState(false);
-  const navigate = useNavigate();
+  const [selectedPatientId, setSelectedPatientId] = useState(0); // 기본 선택 환자
   const [modelOrder, setModelOrder] = useState(["openpsi", "gpt4o"]);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!message.trim()) return;
@@ -27,7 +41,11 @@ function App() {
       const res = await fetch('http://localhost:8000/compare', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, model_order: shuffled })
+        body: JSON.stringify({
+          message,
+          model_order: shuffled,
+          patient_id: selectedPatientId
+        })
       });
 
       const data = await res.json();
@@ -65,6 +83,19 @@ function App() {
   return (
     <div className="App">
       <h1>🧠 LLM Battle</h1>
+
+      <div className="dropdown-section">
+        <label htmlFor="patient-select">🧍 환자 선택: </label>
+        <select
+          id="patient-select"
+          value={selectedPatientId}
+          onChange={(e) => setSelectedPatientId(Number(e.target.value))}
+        >
+          {patients.map((p) => (
+            <option key={p.id} value={p.id}>{p.name}</option>
+          ))}
+        </select>
+      </div>
 
       <div className="battle-section">
         <div className="model-box">

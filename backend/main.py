@@ -7,8 +7,6 @@ import asyncio
 
 from models.registry import model_registry
 
-
-
 app = FastAPI()
 
 # CORS 설정
