@@ -1,37 +1,88 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LeaderboardPage from './LeaderboardPage';
 import './App.css';
 
 const patients = [
-  { id: 0, name: "환자 1 (불안 장애)" },
-  { id: 1, name: "환자 2 (우울 장애)" },
-  { id: 2, name: "환자 3 (사회불안)" },
-  { id: 3, name: "환자 4 (공황장애)" },
-  { id: 4, name: "환자 5 (PTSD)" },
-  { id: 5, name: "환자 6 (강박 장애)" },
-  { id: 6, name: "환자 7 (자존감 문제)" },
-  { id: 7, name: "환자 8 (분노 조절 문제)" },
-  { id: 8, name: "환자 9 (스트레스 과다)" },
-  { id: 9, name: "환자 10 (의존성 성격)" },
+  { id: -1, name: "환자 없음" },
+  { id: 0, name: "환자 1" },
+  { id: 1, name: "환자 2" },
+  { id: 2, name: "환자 3" },
+  { id: 3, name: "환자 4" },
+  { id: 4, name: "환자 5" },
+  { id: 5, name: "환자 6" },
+  { id: 6, name: "환자 7" },
+  { id: 7, name: "환자 8" },
+  { id: 8, name: "환자 9" },
+  { id: 9, name: "환자 10" },
 ];
 
 function App() {
   const [message, setMessage] = useState('');
+  const [isAutoMessage, setIsAutoMessage] = useState(false); 
   const [response, setResponse] = useState({ openpsi: '', gpt4o: '' });
   const [submittedMessage, setSubmittedMessage] = useState('');
   const [vote, setVote] = useState(null);
   const [showModelNames, setShowModelNames] = useState(false);
-  const [selectedPatientId, setSelectedPatientId] = useState(0); // 기본 선택 환자
+  const [selectedPatientId, setSelectedPatientId] = useState(-1);
   const [modelOrder, setModelOrder] = useState(["openpsi", "gpt4o"]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchAutoMessage = async () => {
+      if (selectedPatientId !== -1) {
+        const selectedPatient = patients.find(p => p.id === selectedPatientId);
+        if (selectedPatient) {
+          const autoMessage = selectedPatient.name;
+          setMessage(autoMessage);
+          setIsAutoMessage(true);
+
+          const shuffled = Math.random() < 0.5 ? ["openpsi", "gpt4o"] : ["gpt4o", "openpsi"];
+          setModelOrder(shuffled);
+          setSubmittedMessage(autoMessage);
+          setVote(null);
+          setShowModelNames(false);
+          setResponse({ openpsi: '응답 대기 중...', gpt4o: '응답 대기 중...' });
+
+          try {
+            const res = await fetch('http://localhost:8000/compare', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                message: autoMessage,
+                model_order: shuffled,
+                patient_id: selectedPatientId
+              })
+            });
+
+            const data = await res.json();
+            setResponse(data);
+          } catch (error) {
+            setResponse({
+              openpsi: '[에러] 응답을 가져오지 못했습니다.',
+              gpt4o: '[에러] 응답을 가져오지 못했습니다.'
+            });
+          }
+        }
+      } else {
+        setMessage('');
+        setIsAutoMessage(false);
+      }
+    };
+
+    fetchAutoMessage();
+  }, [selectedPatientId]);
 
   const handleSubmit = async () => {
     if (!message.trim()) return;
 
+    if (selectedPatientId === -1) {
+      alert("환자를 선택해주세요.");
+      return;
+    }
+    
     const shuffled = Math.random() < 0.5 ? ["openpsi", "gpt4o"] : ["gpt4o", "openpsi"];
     setModelOrder(shuffled);
-
     setSubmittedMessage(message);
     setVote(null);
     setShowModelNames(false);
@@ -114,7 +165,10 @@ function App() {
         <textarea
           placeholder="비교하고 싶은 질문을 입력하세요"
           value={message}
-          onChange={e => setMessage(e.target.value)}
+          onChange={e => {
+            setMessage(e.target.value);
+            setIsAutoMessage(false); 
+          }}
         />
         <button onClick={handleSubmit}>질문하기</button>
       </div>

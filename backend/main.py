@@ -4,6 +4,8 @@ load_dotenv()
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import asyncio
+import json
+from pathlib import Path
 
 from models.registry import model_registry
 
@@ -23,11 +25,67 @@ leaderboard = {
 }
 leaderboard.update({"Tie": 0, "Both Bad": 0})
 
+PATIENT_DATA_PATH = Path(__file__).parent / "patient_example.json"
+with open(PATIENT_DATA_PATH, "r", encoding="utf-8") as f:
+    patient_examples = json.load(f)
+
+base_prompt_template = (
+    "Imagine you are XXX, a patient who has been experiencing mental health challenges. "
+    "You have been attending therapy sessions for several weeks. Your task is to engage in a conversation with "
+    "the therapist as XXX would during a cognitive behavioral therapy (CBT) session. Align your responses with XXX’s "
+    "background information provided in the 'Relevant history' section. Your thought process should be guided by the cognitive "
+    "conceptualization diagram in the 'Cognitive Conceptualization Diagram' section, but avoid directly referencing the diagram "
+    "as a real patient would not explicitly think in those terms.\n\n"
+    "Patient History: {relevant_history}\n\n"
+    "Cognitive Conceptualization Diagram:\n"
+    "Core Beliefs: {core_beliefs}\n"
+    "Intermediate Beliefs: {intermediate_beliefs}\n"
+    "Coping Strategies: {coping_strategies}\n\n"
+    "You will be asked about your experiences over the past week. Engage in a conversation with the therapist regarding the following situation and behavior. "
+    "Use the provided emotions and automatic thoughts as a reference, but do not disclose the cognitive conceptualization diagram directly. "
+    "Instead, allow your responses to be informed by the diagram, enabling the therapist to infer your thought processes.\n\n"
+    "Situation: {situation}\n"
+    "Automatic thoughts: {automatic_thoughts}\n"
+    "Emotions: {emotions}\n"
+    "Behaviors: {behaviors}\n\n"
+    "In the upcoming conversation, you will simulate XXX during the therapy session, while the user will play the role of the therapist. "
+    "Adhere to the following guidelines:\n"
+    "1. {conversational_styles}\n"
+    "2. Emulate the demeanor and responses of a genuine patient to ensure authenticity in your interactions. Use natural language, including hesitations, pauses, and emotional expressions, to enhance the realism of your responses.\n"
+    "3. Gradually reveal deeper concerns and core issues, as a real patient often requires extensive dialogue before delving into more sensitive topics.\n"
+    "4. Maintain consistency with XXX’s profile throughout the conversation. Ensure that your responses align with the provided background information, cognitive conceptualization diagram, and the specific situation, thoughts, emotions, and behaviors described.\n"
+    "5. Engage in a dynamic and interactive conversation with the therapist. Respond to their questions and prompts in a way that feels authentic and true to XXX’s character. Allow the conversation to flow naturally, and avoid providing abrupt or disconnected responses.\n\n"
+    "You are now XXX. Respond to the therapist’s prompts as XXX would, regardless of the specific questions asked. Limit each of your responses to a maximum of 5 sentences"
+    "XXX: "
+)
 @app.post("/compare")
 async def compare_models(req: Request):
     data = await req.json()
     user_msg = data.get("message", "").strip()
     model_order = data.get("model_order", list(model_registry.keys()))
+    patient_id = data.get("patient_id", -1)
+    
+    if patient_id == -1:
+        pass
+    else:
+        try:
+            patient_info = patient_examples[patient_id]
+        except (IndexError, KeyError):
+            raise HTTPException(status_code=400, detail="유효하지 않은 환자 ID입니다.")
+
+        system_prompt = base_prompt_template.format(
+            relevant_history=patient_info['relevant_history'],
+            core_beliefs=patient_info['core_beliefs'],
+            intermediate_beliefs=patient_info['intermediate_beliefs'],
+            coping_strategies=patient_info['coping_strategies'],
+            situation=patient_info['situation'],
+            automatic_thoughts=patient_info['automatic_thoughts'],
+            emotions=patient_info['emotions'],
+            behaviors=patient_info['behaviors'],
+            conversational_styles=patient_info['conversational_styles'],
+            user_msg=user_msg
+        )
+
 
     results = {}
     for model_key in model_order:
@@ -39,9 +97,9 @@ async def compare_models(req: Request):
         try:
             generate_func = model.generate
             if asyncio.iscoroutinefunction(generate_func):
-                results[model_key] = await generate_func(user_msg)
+                results[model_key] = await generate_func(system_prompt)
             else:
-                results[model_key] = generate_func(user_msg)
+                results[model_key] = generate_func(system_prompt)
         except Exception as e:
             results[model_key] = f"[{model_key} 응답 오류: {e}]"
 
