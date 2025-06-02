@@ -34,11 +34,20 @@ def generate_response(chatml_messages, max_new_tokens=200):
 for epoch in EPOCHS:
     for lr in LRS:
         model_dir = f"model/3B/model/3B_EP{epoch}_LR{lr:.0e}".replace("e-0", "e-").replace("e+0", "e+")
+
+        # 최신 checkpoint 경로 탐색
+        checkpoints = [ckpt for ckpt in os.listdir(model_dir) if ckpt.startswith("checkpoint-")]
+        if checkpoints:
+            latest_checkpoint = sorted(checkpoints, key=lambda x: int(x.split("-")[1]))[-1]
+            model_ckpt_path = os.path.join(model_dir, latest_checkpoint)
+        else:
+            model_ckpt_path = model_dir  # checkpoint가 없으면 기본 디렉토리 사용
+
         output_file = f"response/hparam_outputs/openpsi3B_EP{epoch}_LR{lr:.0e}.jsonl".replace("e-0", "e-").replace("e+0", "e+")
 
-        tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        tokenizer = AutoTokenizer.from_pretrained(model_ckpt_path)
         model = AutoModelForCausalLM.from_pretrained(
-            model_dir,
+            model_ckpt_path,
             torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
             device_map="auto"
         )
