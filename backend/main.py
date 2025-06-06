@@ -66,7 +66,31 @@ async def compare_models(req: Request):
     patient_id = data.get("patient_id", -1)
     
     if patient_id == -1:
-        pass
+        custom_patient_data = data.get("custom_patient_data", {})
+        required_fields = [
+            "relevant_history", "core_beliefs", "intermediate_beliefs", "coping_strategies",
+            "situation", "automatic_thoughts", "emotions", "behaviors", "conversational_styles"
+        ]
+        for field in required_fields:
+            if field not in custom_patient_data:
+                raise HTTPException(status_code=400, detail=f"Missing field: {field}")
+
+        patient_info = custom_patient_data
+
+        system_prompt = base_prompt_template.format(
+            relevant_history=patient_info['relevant_history'],
+            core_beliefs=patient_info['core_beliefs'],
+            intermediate_beliefs=patient_info['intermediate_beliefs'],
+            coping_strategies=patient_info['coping_strategies'],
+            situation=patient_info['situation'],
+            automatic_thoughts=patient_info['automatic_thoughts'],
+            emotions=patient_info['emotions'],
+            behaviors=patient_info['behaviors'],
+            conversational_styles=patient_info['conversational_styles'],
+            user_msg=user_msg
+        )
+        print(system_prompt)
+
     else:
         try:
             patient_info = patient_examples[patient_id]
