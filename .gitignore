@@ -6,7 +6,7 @@ __pycache__/
 *.env
 *.log
 *.sqlite3
-openpsi_0.5b*
+openpsi_*
 
 # Node modules for React
 /frontend/node_modules/

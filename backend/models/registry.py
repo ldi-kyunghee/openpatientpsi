@@ -1,9 +1,8 @@
-#from .openpsi_model_v2 import OpenPsiModelv2
-from .openpsi_model import OpenPsiModel
+from .openpsi_05B_model import OpenPsi05BModel
+from .openpsi_3B_model import OpenPsi3BModel
 from .gpt4o_model import GPT4OModel
 
 model_registry = {
-    #"openpsiv2": OpenPsiModelv2(),
-    "openpsi": OpenPsiModel(),
+    "openpsi": OpenPsi05BModel(),
     "gpt4o": GPT4OModel()
 }
