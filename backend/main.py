@@ -89,7 +89,6 @@ async def compare_models(req: Request):
             conversational_styles=patient_info['conversational_styles'],
             user_msg=user_msg
         )
-        print(system_prompt)
 
     else:
         try:

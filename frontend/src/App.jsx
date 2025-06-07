@@ -19,14 +19,78 @@ const patients = [
 
 function App() {
   const [message, setMessage] = useState('');
-  const [isAutoMessage, setIsAutoMessage] = useState(false); 
+  const [isAutoMessage, setIsAutoMessage] = useState(false);
   const [response, setResponse] = useState({ openpsi: '', gpt4o: '' });
   const [submittedMessage, setSubmittedMessage] = useState('');
   const [vote, setVote] = useState(null);
   const [showModelNames, setShowModelNames] = useState(false);
   const [selectedPatientId, setSelectedPatientId] = useState(-1);
   const [modelOrder, setModelOrder] = useState(["openpsi", "gpt4o"]);
+  const [showPromptModal, setShowPromptModal] = useState(false);
+  const [customPatientData, setCustomPatientData] = useState({
+    relevant_history: '',
+    core_beliefs: '',
+    intermediate_beliefs: '',
+    coping_strategies: '',
+    situation: '',
+    automatic_thoughts: '',
+    emotions: '',
+    behaviors: '',
+    conversational_styles: '',
+  });
   const navigate = useNavigate();
+
+  const defaultPrompt = `
+- 환자의 현재 상황을 고려하여 적절한 질문을 입력해주세요.
+
+"Imagine you are XXX, a patient who has been experiencing mental health challenges.
+You have been attending therapy sessions for several weeks.
+Your task is to engage in a conversation with the therapist as XXX would during a cognitive behavioral therapy (CBT) session.
+Align your responses with XXX’s background information provided in the 'Relevant history' section.
+Your thought process should be guided by the cognitive conceptualization diagram in the 'Cognitive Conceptualization Diagram' section,
+but avoid directly referencing the diagram as a real patient would not explicitly think in those terms.
+
+Patient History: {relevant_history}
+Cognitive Conceptualization Diagram:
+  Core Beliefs: {core_beliefs}
+  Intermediate Beliefs: {intermediate_beliefs}
+  Coping Strategies: {coping_strategies}
+
+You will be asked about your experiences over the past week.
+Engage in a conversation with the therapist regarding the following situation and behavior.
+Use the provided emotions and automatic thoughts as a reference,
+but do not disclose the cognitive conceptualization diagram directly.
+Instead, allow your responses to be informed by the diagram,
+enabling the therapist to infer your thought processes.
+
+Situation: {situation}
+Automatic thoughts: {automatic_thoughts}
+Emotions: {emotions}
+Behaviors: {behaviors}
+
+In the upcoming conversation, you will simulate XXX during the therapy session,
+while the user will play the role of the therapist.
+Adhere to the following guidelines:
+
+1. {conversational_styles}
+2. Emulate the demeanor and responses of a genuine patient to ensure authenticity in your interactions.
+   Use natural language, including hesitations, pauses, and emotional expressions, to enhance the realism of your responses.
+3. Gradually reveal deeper concerns and core issues, as a real patient often requires extensive dialogue before delving into more sensitive topics.
+4. Maintain consistency with XXX’s profile throughout the conversation.
+   Ensure that your responses align with the provided background information,
+   cognitive conceptualization diagram,
+   and the specific situation, thoughts, emotions, and behaviors described.
+5. Engage in a dynamic and interactive conversation with the therapist.
+   Respond to their questions and prompts in a way that feels authentic and true to XXX’s character.
+   Allow the conversation to flow naturally, and avoid providing abrupt or disconnected responses.
+
+You are now XXX.
+Respond to the therapist’s prompts as XXX would,
+regardless of the specific questions asked.
+Limit each of your responses to a maximum of 5 sentences.
+
+XXX: 
+`;
 
   useEffect(() => {
     const fetchAutoMessage = async () => {
@@ -74,13 +138,17 @@ function App() {
   }, [selectedPatientId]);
 
   const handleSubmit = async () => {
-    if (!message.trim()) return;
+    if (selectedPatientId !== -1 && !message.trim()) return;
 
     if (selectedPatientId === -1) {
-      alert("환자를 선택해주세요.");
-      return;
+      for (const [key, value] of Object.entries(customPatientData)) {
+        if (!value.trim()) {
+          alert(`"${key.replace(/_/g, ' ')}" 항목을 입력해주세요.`);
+          return;
+        }
+      }
     }
-    
+
     const shuffled = Math.random() < 0.5 ? ["openpsi", "gpt4o"] : ["gpt4o", "openpsi"];
     setModelOrder(shuffled);
     setSubmittedMessage(message);
@@ -95,7 +163,8 @@ function App() {
         body: JSON.stringify({
           message,
           model_order: shuffled,
-          patient_id: selectedPatientId
+          patient_id: selectedPatientId,
+          ...(selectedPatientId === -1 ? { custom_patient_data: customPatientData } : {})
         })
       });
 
@@ -108,6 +177,7 @@ function App() {
       });
     }
   };
+
 
   const handleVote = async (option) => {
     setVote(option);
@@ -161,17 +231,36 @@ function App() {
         </div>
       </div>
 
-      <div className="input-section">
-        <textarea
-          placeholder="비교하고 싶은 질문을 입력하세요"
-          value={message}
-          onChange={e => {
-            setMessage(e.target.value);
-            setIsAutoMessage(false); 
-          }}
-        />
-        <button onClick={handleSubmit}>질문하기</button>
-      </div>
+      {selectedPatientId === -1 && (
+        <div className="custom-patient-form">
+          <h3>📝 사용자 정의 환자 프로필 입력</h3>
+
+          <button
+            type="button"
+            onClick={() => setShowPromptModal(true)}
+            style={{ marginBottom: '12px' }}
+          >
+            📄 기본 프롬프트 보기
+          </button>
+
+          <div className="custom-patient-grid">
+            {Object.keys(customPatientData).map((key) => (
+              <div key={key} className="form-group">
+                <label>{key.replace(/_/g, ' ')}:</label>
+                <input
+                  type="text"
+                  value={customPatientData[key]}
+                  placeholder={`${key.replace(/_/g, ' ')} 입력해주세요`}
+                  onChange={(e) =>
+                    setCustomPatientData({ ...customPatientData, [key]: e.target.value })
+                  }
+                />
+              </div>
+            ))}
+          </div>
+          <button onClick={handleSubmit} style={{ marginTop: '12px' }}>질문하기</button>
+        </div>
+      )}
 
       <div className="vote-buttons">
         <button onClick={() => handleVote('A is better')}>👍 A is better</button>
@@ -181,6 +270,19 @@ function App() {
       </div>
 
       <button onClick={() => navigate("/leaderboard")}>🏆 리더보드 보기</button>
+
+      {/* Modal 영역 추가 */}
+      {showPromptModal && (
+        <div className="modal-backdrop" onClick={() => setShowPromptModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>📄 기본 프롬프트</h3>
+            <pre style={{ whiteSpace: 'pre-wrap', padding: '12px', backgroundColor: '#f5f5f5', borderRadius: '6px', maxHeight: '400px', overflowY: 'auto' }}>
+              {defaultPrompt}
+            </pre>
+            <button onClick={() => setShowPromptModal(false)} style={{ marginTop: '12px' }}>닫기</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
