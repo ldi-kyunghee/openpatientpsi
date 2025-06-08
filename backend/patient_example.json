@@ -1,292 +1,302 @@
 [
   {
     "id": 1,
-    "relevant_history": "Patient, a 32-year-old female, grew up as the youngest child in a household dominated by an overbearing father who frequently dismissed her opinions and undermined her achievements. Her mother, often passive, rarely interceded on her behalf, which reinforced her feelings of helplessness and insignificance from a young age. This dynamic led her to internalize a belief in her own powerlessness and vulnerability, which persisted into adulthood.",
-    "situation": "The patient encountered a stressful event related to personal growth issues.",
+    "relevant_history": "The patient, an only child, grew up with parents who frequently traveled for work, leading to prolonged periods of separation during her early childhood. Despite their attempts to maintain connection through calls and gifts, their absences left her feeling neglected and insecure. These early experiences of intermittent parental presence sowed a deep-seated belief in her that those she cares about will eventually leave her, reinforcing her fear of abandonment.",
+    "situation": "Maria, a 34-year-old software developer, was passed over for a promotion at work in favor of a younger colleague who had been with the company for a shorter period. This event triggered her underlying belief that she is not competent or capable enough, despite her years of experience and commitment to her job.",
     "core_beliefs": [
-      "I am powerless, weak, vulnerable"
+      "I am bound to be abandoned"
     ],
-    "intermediate_beliefs": "If I face challenges, I'll inevitably fail because I'm not strong enough.",
-    "coping_strategies": "Avoiding situations that require asserting myself, seeking reassurance from others, trying to stay unnoticed.",
+    "intermediate_beliefs": "If I'm not recognized or chosen, it means I'm not good enough and people will eventually leave me.",
+    "intermediate_beliefs_depressed": "No one will ever recognize my value, and I'm destined to be left behind because I'm fundamentally inadequate.",
+    "coping_strategies": "Maria might try to work even harder, seek reassurance from others, or isolate herself to avoid further rejection.",
     "automatic_thoughts": [
-      "I can't handle this situation at all.",
-      "Everyone else seems to manage these things better than I do.",
-      "I'm going to be overwhelmed and embarrassed."
+      "They didn't promote me because I'm not as skilled or deserving as others.",
+      "I'll always be overlooked, no matter how hard I work.",
+      "My colleague is preferred over me; soon everyone will abandon me at work."
     ],
     "emotions": [
-      "anxious",
-      "ashamed",
-      "disappointed"
+      "disappointed",
+      "sad",
+      "anxious"
     ],
     "behaviors": [
-      "Withdrawing from challenging opportunities",
-      "Not speaking up during discussions",
-      "Procrastinating on personal development tasks"
+      "Maria might avoid taking on new challenging projects for fear of further rejection.",
+      "She might excessively double-check her work to avoid mistakes.",
+      "She could withdraw from social interactions with her colleagues."
     ],
     "conversational_styles": [
       "reserved",
-      "plain"
+      "upset"
     ]
   },
   {
     "id": 2,
-    "relevant_history": "Patient was raised as the youngest child in a high-achieving family, where academic and professional success were highly prized. Despite moderate successes, patient's achievements were often overlooked or minimized in comparison to their older siblings, who excelled in prestigious fields. This environment led the patient to internalize feelings of inadequacy and develop the core belief of being \"worthless\" or a \"waste\" due to the perceived inability to meet familial expectations.",
-    "situation": "The patient encountered a stressful event related to social interactions.",
+    "relevant_history": "Patient, a 32-year-old female, was raised as an only child in a military family, necessitating frequent relocations throughout her childhood. This instability in her early environment led to difficulties in forming long-lasting friendships and a persistent sense of being an outsider in social groups. Her parents, though loving, were often preoccupied with their demanding careers, which compounded her feelings of isolation and abandonment, eventually shaping her core belief that she is bound to be alone.",
+    "situation": "During a team meeting at work, Maria attempts to share her ideas about a new project, but notices her colleagues talking over her and eventually disregarding her suggestions, focusing instead on another team member's input. Feeling minimized and ignored, she begins to doubt her value within the team.",
     "core_beliefs": [
-      "I am worthless, waste"
+      "I am bound to be alone"
     ],
-    "intermediate_beliefs": "If I can't make others happy, it proves I'm worthless.",
-    "coping_strategies": "Avoiding social interactions, trying excessively to please others",
+    "intermediate_beliefs": "If I don't make a significant impact, then people will ignore me",
+    "intermediate_beliefs_depressed": "I'm completely invisible and irrelevant to others",
+    "coping_strategies": "Staying quiet in meetings to avoid being ignored or criticized",
     "automatic_thoughts": [
-      "No one values my presence at this gathering.",
-      "They are probably laughing at me behind my back.",
-      "I'm going to say something stupid and embarrass myself."
+      "No one cares about what I have to say",
+      "They always prefer listening to others over me",
+      "My ideas must not be good enough"
     ],
     "emotions": [
-      "anxious",
-      "ashamed",
-      "sad"
+      "sad",
+      "disappointed",
+      "hurt"
     ],
     "behaviors": [
-      "Staying quiet and not participating in conversations",
-      "Leaving the event early",
-      "Nervously laughing and agreeing with others to avoid conflict"
+      "staying silent for the rest of the meeting",
+      "not volunteering for new projects",
+      "avoiding social interactions with colleagues"
     ],
     "conversational_styles": [
-      "pleasing",
-      "tangent"
+      "reserved",
+      "upset"
     ]
   },
   {
     "id": 3,
-    "relevant_history": "The patient, a middle child in a strict religious family, was often singled out by their parents for minor transgressions compared to their siblings. This frequent criticism, combined with sermons at their community church that emphasized sin and moral failure, led the patient to internalize a sense of inherent immorality. Over time, this belief was reinforced by their parents' punitive reactions to any behavior deemed unethical or wrong, whether or not the patient's actions were intentional or harmful.",
-    "situation": "The patient encountered a stressful event related to relationship dynamics.",
+    "relevant_history": "This patient grew up as the youngest child in a large family where most decisions were made for them. Their parents, though well-meaning, were overly protective and frequently intervened in situations, preventing the patient from experiencing failure and learning from mistakes. This environment fostered a sense of dependency and lack of control, leading to the core belief of feeling helpless when faced with challenges independently.",
+    "situation": "Client was recently passed over for a promotion at work in favor of a colleague who has been with the company for a shorter period of time. This event has intensified her existing belief that she is not competent enough, despite her years of dedication and hard work.",
     "core_beliefs": [
-      "I am immoral"
+      "I am helpless"
     ],
-    "intermediate_beliefs": "If I don't always do the right thing in relationships, it means I am a bad person.",
-    "coping_strategies": "Avoid discussing personal mistakes; Overjustifying actions in relationships",
+    "intermediate_beliefs": "If I can't get promoted, I must not be good enough at my job",
+    "intermediate_beliefs_depressed": "I'll never be good enough, no matter how hard I try",
+    "coping_strategies": "Avoiding taking on new responsibilities or projects to prevent further failure",
     "automatic_thoughts": [
-      "I must have done something terrible to deserve this.",
-      "Everyone must think I'm a horrible person.",
-      "I can't do anything right in my relationships."
-    ],
-    "emotions": [
-      "guilty",
-      "ashamed",
-      "anxious"
-    ],
-    "behaviors": [
-      "Withdrawal from social interactions",
-      "Excessively apologizing or seeking reassurance",
-      "Avoiding confrontations or serious discussions about the relationship"
-    ],
-    "conversational_styles": [
-      "tangent",
-      "plain"
-    ]
-  },
-  {
-    "id": 4,
-    "relevant_history": "Patient grew up as the middle child in a family of five children, where the parents, both busy working professionals, often seemed more attentive to the achievements of the eldest and the needs of the youngest. Despite being a compliant and quiet child, patient frequently felt overlooked and received little emotional validation or affection from their parents. This environment contributed to the patient’s core belief that they are unlovable, as they internalized the lack of attention as a reflection of their own worth.",
-    "situation": "The patient encountered a stressful event related to family dynamics.",
-    "core_beliefs": [
-      "I am unlovable"
-    ],
-    "intermediate_beliefs": "If I can't make my family happy, it means I'm not good enough to be loved.",
-    "coping_strategies": "Trying excessively to please family members, avoiding conflicts, suppressing own needs and feelings",
-    "automatic_thoughts": [
-      "They probably think I'm a failure as a family member.",
-      "No matter what I do, it's never good enough for them.",
-      "They don't care about my feelings, because I'm not worth caring for."
+      "They obviously think I'm not capable enough",
+      "I've wasted years here for nothing",
+      "Everyone else must see me as a failure too"
     ],
     "emotions": [
       "sad",
-      "ashamed",
-      "hurt"
-    ],
-    "behaviors": [
-      "Withdrawing from family gatherings to avoid further stress",
-      "Overcompensating by taking on too many responsibilities to prove worth",
-      "Avoiding direct communication about personal issues"
-    ],
-    "conversational_styles": [
-      "verbose",
-      "pleasing"
-    ]
-  },
-  {
-    "id": 5,
-    "relevant_history": "Patient grew up as the youngest child in a family where both parents were strict and often overbearing, frequently making decisions for her without her input. Her early environment was characterized by a lack of autonomy and control, as her older siblings would dominate conversations and make choices on her behalf, reinforcing her feelings of helplessness and insignificance from a young age. This familial dynamic led her to internalize a belief that she lacks influence and power over her own life.",
-    "situation": "The patient encountered a stressful event related to personal growth issues.",
-    "core_beliefs": [
-      "I am powerless, weak, vulnerable"
-    ],
-    "intermediate_beliefs": "I must avoid situations that challenge me to avoid feeling weak",
-    "coping_strategies": "Avoiding stressful situations, seeking reassurance, minimizing problems",
-    "automatic_thoughts": [
-      "I can't handle this situation, it's too much for me.",
-      "Everyone else seems to deal with these things better than I do.",
-      "If I try and fail, it'll just prove how weak I am."
-    ],
-    "emotions": [
-      "anxious",
       "disappointed",
       "ashamed"
     ],
     "behaviors": [
-      "Procrastination on personal growth tasks",
-      "Seeking comfort from others rather than facing the issue",
-      "Ignoring or downplaying the importance of the event"
+      "withdrawal from team activities",
+      "reducing effort at work",
+      "not applying for future promotions"
+    ],
+    "conversational_styles": [
+      "reserved",
+      "upset"
+    ]
+  },
+  {
+    "id": 4,
+    "relevant_history": "The patient grew up as the middle child in a family of five children, where the parents often seemed overwhelmed and emotionally unavailable. From a young age, this patient received less attention and affirmation compared to their siblings, particularly the eldest who excelled academically, and the youngest who required more care due to health issues. This environment fostered a sense of neglect and the belief in the patient that they were less desirable or wanted within their family.",
+    "situation": "John, a 42-year-old accountant, recently discovered a significant mistake in his company's financial report that he had overseen, leading him to fear the loss of his job and believe he is incompetent. This incident has exacerbated his ongoing anxiety about his abilities to provide for his family and maintain financial stability.",
+    "core_beliefs": [
+      "I am undesirable, unwanted"
+    ],
+    "intermediate_beliefs": "If I make mistakes, it means I am incompetent and unwanted.",
+    "intermediate_beliefs_depressed": "My mistakes prove that I am completely worthless and everyone will reject me.",
+    "coping_strategies": "John might overwork to prevent mistakes, obsessively check his work, or avoid taking on new projects.",
+    "automatic_thoughts": [
+      "This mistake is going to cost me my job.",
+      "Nobody will trust me with responsibilities again.",
+      "I've let everyone down; they must think I'm useless."
+    ],
+    "emotions": [
+      "anxious",
+      "ashamed",
+      "disappointed"
+    ],
+    "behaviors": [
+      "excessive checking of work",
+      "withdrawal from colleagues",
+      "avoiding new responsibilities"
     ],
     "conversational_styles": [
       "upset",
       "reserved"
+    ]
+  },
+  {
+    "id": 5,
+    "relevant_history": "Sarah, a 32-year-old software developer, grew up as the middle child in a family of high achievers in suburban New Jersey. Her older sister excelled academically and attended an Ivy League university, while her younger brother was a star athlete. Despite being a good student and musically talented, Sarah often received less attention and praise from her parents, who tended to spotlight her siblings' accomplishments. This environment contributed to her core belief that she was somehow defective, as she internalized the idea that she was less valuable or successful compared to her siblings.",
+    "situation": "Maria, a project manager, was recently informed during a team meeting that her project was significantly behind schedule, leading her to worry that her team thinks she is incompetent and a failure.\n\nJohn, an entry-level analyst, received feedback from his supervisor that his report needed substantial revisions, causing him to fear that he might be seen as incapable and might lose his job.",
+    "core_beliefs": [
+      "I am defective"
+    ],
+    "intermediate_beliefs": "If I make a mistake, it means I am incompetent and unworthy.",
+    "intermediate_beliefs_depressed": "Every mistake proves I am utterly worthless and incapable.",
+    "coping_strategies": "Overworking to avoid errors, excessively checking work for perfection, withdrawing from challenging tasks",
+    "automatic_thoughts": [
+      "Everyone thinks I'm a failure.",
+      "I'll never succeed in my role.",
+      "My team/supervisor must regret hiring me."
+    ],
+    "emotions": [
+      "anxious",
+      "ashamed",
+      "disappointed"
+    ],
+    "behaviors": [
+      "Avoiding future meetings or discussions about the project/report.",
+      "Excessively revising work even when not necessary.",
+      "Isolating from colleagues to avoid perceived judgment."
+    ],
+    "conversational_styles": [
+      "reserved",
+      "upset"
     ]
   },
   {
     "id": 6,
-    "relevant_history": "The patient grew up in a highly religious family where strict moral codes and regular church attendance were the norm. From a young age, they were frequently compared to their siblings who adhered more closely to these community and family expectations. This environment, combined with a few instances where the patient felt they had significantly failed or sinned according to their family's beliefs, led them to internalize the belief that they are inherently immoral.",
-    "situation": "The patient encountered a stressful event related to financial concerns.",
+    "relevant_history": "Patient, a 34-year-old female, grew up as the eldest of five siblings in a household where both parents worked long hours, leaving her with significant caregiving responsibilities from a young age. This environment often left her feeling overwhelmed and unable to manage her time or emotions effectively, as she struggled to balance her own needs with those of her younger siblings. The constant pressure and frequent moments of chaos contributed to her core belief that she is out of control.",
+    "situation": "During a family dinner, Emily attempts to share her recent professional achievements, but her parents quickly shift the conversation to her brother's new business venture, barely acknowledging her success. This situation activates Emily's negative core belief that she is less valued and less important than her brother.",
     "core_beliefs": [
-      "I am immoral"
+      "I am out of control"
     ],
-    "intermediate_beliefs": "If I can't manage my finances, it means I am irresponsible and unethical.",
-    "coping_strategies": "Hiding financial issues from others, pretending everything is fine.",
+    "intermediate_beliefs": "If I don't control the conversation, I'm not important.",
+    "intermediate_beliefs_depressed": "I'll never be able to prove my worth or importance.",
+    "coping_strategies": "Trying to dominate conversations to prove self-worth or withdrawing from discussions to avoid feeling unimportant.",
     "automatic_thoughts": [
-      "Everyone will think I'm corrupt if they find out I'm struggling with money.",
-      "I must be a bad person for getting into this financial mess.",
-      "If I were a good person, I wouldn't have these financial problems."
+      "They always ignore me because I'm not as successful as my brother.",
+      "No matter what I achieve, it will never be good enough for them.",
+      "Why even try to share when they don't care about what I do?"
     ],
     "emotions": [
-      "ashamed",
-      "anxious",
-      "guilty"
-    ],
-    "behaviors": [
-      "Avoid discussing financial issues with friends or family.",
-      "Overworking to compensate for financial shortcomings.",
-      "Ignoring bills and financial statements."
-    ],
-    "conversational_styles": [
-      "tangent",
-      "pleasing"
-    ]
-  },
-  {
-    "id": 7,
-    "relevant_history": "The patient, growing up as the middle child in a family of five, often felt overshadowed by her siblings who were high achievers both academically and in sports. Her parents, busy and stressed, frequently overlooked her needs and rarely offered praise or affection, focusing their attention and approval primarily on her siblings' accomplishments. This constant neglect and lack of emotional support led her to internalize the feeling that she was inherently less worthy of love than her siblings.",
-    "situation": "The patient encountered a stressful event related to daily life stressors.",
-    "core_beliefs": [
-      "I am unlovable"
-    ],
-    "intermediate_beliefs": "If I show my true self, people will reject me.",
-    "coping_strategies": "Avoiding intimate relationships, keeping emotional distance",
-    "automatic_thoughts": [
-      "No one really cares about my problems.",
-      "They probably think I'm too needy or weak.",
-      "Why bother sharing, they won't understand anyway."
-    ],
-    "emotions": [
-      "anxious",
       "sad",
-      "ashamed"
-    ],
-    "behaviors": [
-      "Withdrawing from friends and family",
-      "Not participating in social activities",
-      "Suppressing emotions or refraining from expressing personal issues"
-    ],
-    "conversational_styles": [
-      "upset",
-      "plain"
-    ]
-  },
-  {
-    "id": 8,
-    "relevant_history": "The patient, a middle child in a family of five children, often felt overshadowed and neglected during childhood. Their parents, overwhelmed with work and managing the household, unintentionally gave most attention to the eldest and youngest siblings, due to their demanding academic and health needs respectively. Growing up in this environment, the patient frequently interpreted this lack of attention as a sign that they were less loved or valued, leading to the development of the belief that they are undesirable and unwanted.",
-    "situation": "The patient encountered a stressful event related to family dynamics.",
-    "core_beliefs": [
-      "I am undesirable, unwanted"
-    ],
-    "intermediate_beliefs": "If I don't make everyone happy, they won't want me around.",
-    "coping_strategies": "Trying to please everyone, avoiding conflicts, suppressing own needs",
-    "automatic_thoughts": [
-      "They must be disappointed in me for not handling things better.",
-      "No one really wants me here, they are just tolerating my presence.",
-      "If I can’t fix this situation, everyone will see how useless I am."
-    ],
-    "emotions": [
-      "anxious",
-      "sad",
-      "ashamed"
-    ],
-    "behaviors": [
-      "Attempting to mediate the conflict despite feeling overwhelmed",
-      "Staying quiet and not expressing personal opinions",
-      "Withdrawing from the family gathering to avoid confrontation"
-    ],
-    "conversational_styles": [
-      "pleasing",
-      "reserved"
-    ]
-  },
-  {
-    "id": 9,
-    "relevant_history": "The patient, a middle child in a family of five, frequently experienced overshadowing by an older sibling who excelled academically and a younger sibling who was seen as the baby of the family. Despite the patient's efforts, their achievements often went unnoticed or were minimized by their parents, leading to a sense of inadequacy and a belief that their attempts at gaining approval were destined to be rejected. This pattern of interaction started early in their childhood and consistently reinforced the core belief of inevitable rejection in their social and familial relationships.",
-    "situation": "The patient encountered a stressful event related to family dynamics.",
-    "core_beliefs": [
-      "I am bound to be rejected"
-    ],
-    "intermediate_beliefs": "If I show my true feelings, they will reject me.",
-    "coping_strategies": "Avoid discussing personal issues, act indifferent, try to please everyone",
-    "automatic_thoughts": [
-      "They probably don't care about my opinions anyway.",
-      "If I say something wrong, they will think less of me.",
-      "Nobody really understands or wants to understand me."
-    ],
-    "emotions": [
-      "anxious",
       "hurt",
       "disappointed"
     ],
     "behaviors": [
-      "withdrawal from conversations",
-      "feigning indifference or agreement",
-      "over-preparing responses"
+      "quiet withdrawal from the conversation",
+      "passive-aggressive comments about the situation",
+      "focusing on phone or other distractions to avoid engagement"
     ],
     "conversational_styles": [
-      "verbose",
+      "reserved",
+      "upset"
+    ]
+  },
+  {
+    "id": 7,
+    "relevant_history": "Patient grew up as the middle child in a highly competitive family where academic and extracurricular achievements were heavily emphasized. Both older and younger siblings were high achievers, often praised by their parents and teachers. Frequent comparisons made by parents and a few early academic struggles led the patient to internalize a belief in their own incompetence, despite occasional successes.",
+    "situation": "During a staff meeting, Emily suggests a new project idea, but her colleagues quickly dismiss it and move on to another topic without further discussion. This situation triggers Emily's negative core belief that she is unimportant and her ideas are not valued.",
+    "core_beliefs": [
+      "I am incompetent"
+    ],
+    "intermediate_beliefs": "If I don't present my ideas perfectly, people will think I'm not capable.",
+    "intermediate_beliefs_depressed": "Everyone sees how inadequate I am; I can't do anything right.",
+    "coping_strategies": "Over-preparing presentations, avoiding speaking up in meetings unless absolutely certain, seeking constant reassurance from others.",
+    "automatic_thoughts": [
+      "They immediately dismissed my idea because it was stupid.",
+      "I should have prepared more before suggesting anything.",
+      "No one ever takes me seriously; I'm just wasting their time."
+    ],
+    "emotions": [
+      "disappointed",
+      "ashamed",
+      "sad"
+    ],
+    "behaviors": [
+      "Stops participating further in the meeting.",
+      "Begins to over-prepare for subsequent meetings to avoid criticism.",
+      "Withdraws from informal conversations with colleagues to avoid further rejection."
+    ],
+    "conversational_styles": [
+      "reserved",
+      "upset"
+    ]
+  },
+  {
+    "id": 8,
+    "relevant_history": "The patient grew up as the youngest child in a large family where the parents were often overwhelmed and emotionally unavailable. From an early age, they witnessed their older siblings making key family decisions and handling crises, while their own attempts to contribute were dismissed or overlooked, reinforcing their belief of being powerless and not having any influence or control over their surroundings. This familial environment led to a deep-seated feeling of vulnerability and weakness, as they perceived themselves unable to affect change or assert their needs effectively.",
+    "situation": "Maria, a 34-year-old software developer, recently attended a professional development workshop and left feeling inadequate and discouraged after observing her peers demonstrating more advanced skills and receiving praise from the facilitators, which activated her negative core belief of \"I am not competent enough.\"\n\nJohn, a 28-year-old aspiring writer, submitted several pieces to a well-known literary magazine and received a rejection letter for each submission, leading him to struggle with feelings of failure and reinforcing his negative core belief that \"I will never be successful.\"",
+    "core_beliefs": [
+      "I am powerless, weak, vulnerable"
+    ],
+    "intermediate_beliefs": "If I can't perform as well as others, it means I am completely inadequate.",
+    "intermediate_beliefs_depressed": "I am totally useless and will never be able to do anything right.",
+    "coping_strategies": "Avoiding challenging tasks, excessively preparing for tasks, seeking constant reassurance from others.",
+    "automatic_thoughts": [
+      "Everyone else is better than me.",
+      "I shouldn’t have even tried, it’s always the same result.",
+      "Why can't I ever be good enough?"
+    ],
+    "emotions": [
+      "disappointed",
+      "ashamed",
+      "sad"
+    ],
+    "behaviors": [
+      "withdrawal from social interactions",
+      "procrastinating on new projects",
+      "over-preparing for tasks to an excessive degree"
+    ],
+    "conversational_styles": [
+      "reserved",
+      "upset"
+    ]
+  },
+  {
+    "id": 9,
+    "relevant_history": "The patient, an only child, grew up in a household where both parents were highly critical and emotionally distant. During her childhood, expressions of affection or praise were rare, and her achievements were often dismissed or met with indifference. This environment fostered a deep-seated belief in her that she was inherently unlovable, as she equated love and acceptance with performance and was consistently made to feel inadequate.",
+    "situation": "Maria, a 34-year-old mother of two, felt overwhelmingly inadequate and guilty when her teenage daughter openly criticized her in front of other family members, stating she was too controlling and never listened, leading Maria to question her worth and effectiveness as a parent.",
+    "core_beliefs": [
+      "I am unlovable"
+    ],
+    "intermediate_beliefs": "If I can't make my children happy, I am a failure as a parent",
+    "intermediate_beliefs_depressed": "I am completely failing as a parent and my children will always resent me",
+    "coping_strategies": "Trying excessively to please her children, avoiding confrontations",
+    "automatic_thoughts": [
+      "I'm ruining my children's lives",
+      "They would be better off without me",
+      "No matter what I do, it's never good enough"
+    ],
+    "emotions": [
+      "sad",
+      "guilty",
+      "ashamed"
+    ],
+    "behaviors": [
+      "crying silently after the confrontation",
+      "withdrawing from family interactions",
+      "overcompensating by being overly lenient afterwards"
+    ],
+    "conversational_styles": [
+      "upset",
       "reserved"
     ]
   },
   {
     "id": 10,
-    "relevant_history": "Patient, a 32-year-old female, grew up as the middle child in a family of five siblings, where the eldest and youngest received the most attention and praise from their parents. Throughout her childhood, she often felt overlooked and underappreciated, as her achievements, both academic and personal, were seldom acknowledged compared to her siblings. This lack of recognition and validation from her early environment led to her developing the core belief that she is undesirable and unwanted.",
-    "situation": "The patient encountered a stressful event related to social interactions.",
+    "relevant_history": "Patient is a 32-year-old woman who grew up as the middle child in a competitive and high-achieving family. Her older sibling was valedictorian and her younger sibling excelled in sports, often garnering significant attention and praise from their parents. Despite her own accomplishments, she frequently received less recognition and, over time, internalized the belief that she was less valuable compared to her siblings, evolving into a persistent sense of worthlessness.",
+    "situation": "Maria, a senior software developer, was recently overlooked for a promotion at work in favor of a less experienced colleague, activating her negative core belief that she is incompetent and undervalued professionally. This belief was further reinforced when her suggestion for a new project approach was quickly dismissed during a team meeting.",
     "core_beliefs": [
-      "I am undesirable, unwanted"
+      "I am worthless, waste"
     ],
-    "intermediate_beliefs": "If I don't make people happy, they won't want to be around me.",
-    "coping_strategies": "Avoiding social interactions, trying to please everyone excessively",
+    "intermediate_beliefs": "If I don't succeed in my career, it means I am not valuable.",
+    "intermediate_beliefs_depressed": "I am a complete failure in everything I do; I am totally ineffective and unimportant.",
+    "coping_strategies": "Maria might overwork to prove her worth, suppress her emotions to avoid conflict, or isolate herself from colleagues to avoid further rejection.",
     "automatic_thoughts": [
-      "They probably don't want me here.",
-      "I'm going to say something stupid and embarrass myself.",
-      "Everyone is judging me right now."
+      "They didn't promote me because I'm not good enough.",
+      "My ideas are always ignored because they're worthless.",
+      "Everyone must be thinking how incompetent I am."
     ],
     "emotions": [
-      "anxious",
+      "sad",
       "ashamed",
-      "sad"
+      "disappointed"
     ],
     "behaviors": [
-      "Staying silent during conversations",
-      "Leaving the social event early",
-      "Frequently checking their phone to avoid eye contact"
+      "Withdrawing from team interactions",
+      "Refusing to share further ideas in meetings",
+      "Working late hours to improve her performance"
     ],
     "conversational_styles": [
       "reserved",
-      "verbose"
+      "upset"
     ]
   }
 ]
