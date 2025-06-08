@@ -16,7 +16,17 @@ class OpenPsi3BModel(BaseModel):
 
     def generate(self, prompt: str) -> str:
         input_ids = self.tokenizer(prompt, return_tensors="pt").input_ids.to(self.model.device)
+        
         with torch.no_grad():
-            output = self.model.generate(input_ids=input_ids, max_new_tokens=512)
+            output = self.model.generate(
+                input_ids,
+                max_new_tokens=max_new_tokens,  # ex) 100 정도로 충분
+                do_sample=True,
+                temperature=0.7,
+                top_p=0.9,
+                pad_token_id=tokenizer.eos_token_id,
+                stopping_criteria=stopping_criteria
+            )
+        
         decoded = self.tokenizer.decode(output[0], skip_special_tokens=True)
         return decoded.split(prompt, 1)[-1].strip()

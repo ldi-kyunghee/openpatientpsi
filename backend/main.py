@@ -71,8 +71,8 @@ Behaviors: {behaviors}
 In the upcoming conversation, you will simulate
 XXX during the therapy session, while the user
 will play the role of the therapist. Adhere
-to the following guidelines:
-{style_description}
+to the following guidelines: {style_description}
+
 2. Emulate the demeanor and responses of a genuine patient
 to ensure authenticity in your interactions. Use
 natural language, including hesitations, pauses,
@@ -100,6 +100,8 @@ You are now XXX. Respond to the therapist’s prompts
 as XXX would, regardless of the specific questions
 asked. Limit each of your responses to a maximum
 of 5 sentences.
+
+XXX:
 """
 )
 
